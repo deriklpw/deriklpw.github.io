@@ -14,20 +14,18 @@
 <meta name="author" content="deriklpw" />
 
 
-    
-    
 
-
-<meta name="description" content="生活不只是眼前的苟且，还有诗和远方。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Derik&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。 在LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例 例如: 在LinearLayout中放置三个Button1，Button2，Button3     android:lay">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinearLayout android:layout_weight属性用法总结">
+<meta property="og:url" content="http://yoursite.com/2018/03/20/linearlayout-note/index.html">
 <meta property="og:site_name" content="Derik&#39;s Blog">
-<meta property="og:description" content="生活不只是眼前的苟且，还有诗和远方。">
+<meta property="og:description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。 在LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例 例如: 在LinearLayout中放置三个Button1，Button2，Button3     android:lay">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-20T10:28:54.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Derik&#39;s Blog">
-<meta name="twitter:description" content="生活不只是眼前的苟且，还有诗和远方。">
+<meta name="twitter:title" content="LinearLayout android:layout_weight属性用法总结">
+<meta name="twitter:description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。 在LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例 例如: 在LinearLayout中放置三个Button1，Button2，Button3     android:lay">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -55,13 +53,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Derik&#39;s Blog</title>
+<title>LinearLayout android:layout_weight属性用法总结 | Derik&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -70,8 +66,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -255,9 +251,7 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-linearlayout-note" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-linearlayout-note" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2018/03/20/linearlayout-note/" class="article-date">
@@ -275,12 +269,19 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/20/linearlayout-note/">LinearLayout android:layout_weight属性用法总结</a>
+    <h1 class="article-title" itemprop="name">
+      LinearLayout android:layout_weight属性用法总结
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -319,141 +320,85 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/03/20/first-blog/" class="article-date">
-      <time datetime="2018-03-20T09:52:00.983Z" itemprop="datePublished">2018-03-20</time>
-</a>
-
-
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/03/20/linearlayout-note/">LinearLayout android:layout_weight属性用法总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">deriklpw</a></p>
+        <p><span>发布时间:</span>2018-03-20, 18:28:54</p>
+        <p><span>最后更新:</span>2018-03-20, 18:28:54</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/03/20/linearlayout-note/" title="LinearLayout android:layout_weight属性用法总结">http://yoursite.com/2018/03/20/linearlayout-note/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/03/20/linearlayout-note/　　作者: deriklpw" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+
+
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/20/first-blog/">First Blog</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>生活不只是眼前的苟且，还有诗和远方。<br>$$ \frac{1}{6} $$</p>
-<h1 id="这是H1"><a href="#这是H1" class="headerlink" title="这是H1"></a>这是H1</h1><h2 id="这是H2"><a href="#这是H2" class="headerlink" title="这是H2"></a>这是H2</h2><h3 id="这是H3"><a href="#这是H3" class="headerlink" title="这是H3"></a>这是H3</h3><h4 id="这是H4"><a href="#这是H4" class="headerlink" title="这是H4"></a>这是H4</h4><h5 id="这是H5"><a href="#这是H5" class="headerlink" title="这是H5"></a>这是H5</h5><h6 id="这是H6"><a href="#这是H6" class="headerlink" title="这是H6"></a>这是H6</h6>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/03/12/hello-world/" class="article-date">
-      <time datetime="2018-03-12T00:51:36.168Z" itemprop="datePublished">2018-03-12</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/12/hello-world/">Hello World</a>
-    </h1>
-  
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/03/20/first-blog/">
+                    First Blog
+                </a>
+            </div>
+        
+    </nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"LinearLayout android:layout_weight属性用法总结　| Derik's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
 
 
 
@@ -461,10 +406,50 @@
 
 
 
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2159052';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2159052"></script>
+</section>
+
+    
 
 
-  
-  
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/03/20/first-blog/" title="下一篇: First Blog">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/20/linearlayout-note/">LinearLayout android:layout_weight属性用法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/20/first-blog/">First Blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/12/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
 </div>
       <footer id="footer">
     <div class="outer">
@@ -518,10 +503,6 @@
         })
     </script>
 
-
-    
-
-     
 
 
 
