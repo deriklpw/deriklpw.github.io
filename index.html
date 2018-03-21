@@ -260,8 +260,8 @@
     <article id="post-linearlayout-note" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/03/20/linearlayout-note/" class="article-date">
-      <time datetime="2018-03-20T10:28:54.639Z" itemprop="datePublished">2018-03-20</time>
+      <a href="/2018/03/21/linearlayout-note/" class="article-date">
+      <time datetime="2018-03-21T00:19:07.191Z" itemprop="datePublished">2018-03-21</time>
 </a>
 
 
@@ -276,7 +276,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/20/linearlayout-note/">LinearLayout android:layout_weight属性用法总结</a>
+      <a class="article-title" href="/2018/03/21/linearlayout-note/">LinearLayout android:layout_weight 属性用法总结</a>
     </h1>
   
 
@@ -286,21 +286,21 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>LinearLayout</strong>是很常用的一种布局，当考虑使用<strong>LinearLayout</strong>的时候，为了在布局时，<br>达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。</p>
-<p>在<strong>LinearLayout</strong>中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例</p>
+        <p><code>LinearLayout</code>是很常用的一种布局，当考虑使用<code>LinearLayout</code>的时候，为了在布局时，<br>达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。</p>
+<p><code>LinearLayout</code>中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例</p>
 <p>例如:</p>
-<p>在<strong>LinearLayout</strong>中放置三个Button1，Button2，Button3 </p>
-<p>   <strong>android:layout_width=”match_parent”</strong></p>
-<p>   每个Button的<strong>android:layout_weight</strong>分别为1,2,3</p>
-<p>依据<strong>android:layout_height</strong>属性，分三种情况讨论<strong>android:layout_weight</strong>属性, L为屏幕大小（宽或高）：</p>
+<p>在<code>LinearLayout</code>中放置三个Button1，Button2，Button3 </p>
+<p>   <code>android:layout_width=&quot;match_parent&quot;</code></p>
+<p>   每个Button的<code>android:layout_weight</code>分别为1,2,3</p>
+<p>依据<code>android:layout_height</code>属性，分三种情况讨论<code>android:layout_weight</code>属性, L为屏幕大小（宽或高）：</p>
 <ol>
-<li><p><strong>android:layout_height=”0dp”</strong>时:</p>
+<li><p><code>android:layout_height=&quot;0dp&quot;</code>时:</p>
 <p>组件大小=0+L*权重比例</p>
 <p>组件大小和权重成正比</p>
 <p>则Button1的大小=0+L*（1/6），为（1/6）L; Button2的大小=0+L*(2/6)，为（2/6）L；<br>Button3的大小=0+L*(3/6)，为（3/6）L，<strong>Button1:Button2:Button3 = 1:2:3</strong></p>
-<p>！<a href="https://" target="_blank" rel="noopener">image1</a></p>
+<p>！<a href="http://image.baidu.com/search/detail?ct=503316480&amp;z=0&amp;ipn=d&amp;word=%E5%9B%BE%E7%89%87&amp;hs=0&amp;pn=0&amp;spn=0&amp;di=97987891320&amp;pi=0&amp;rn=1&amp;tn=baiduimagedetail&amp;is=0%2C0&amp;ie=utf-8&amp;oe=utf-8&amp;cl=2&amp;lm=-1&amp;cs=3588772980%2C2454248748&amp;os=1031665791%2C326346256&amp;simid=0%2C0&amp;adpicid=0&amp;lpn=0&amp;ln=30&amp;fr=ala&amp;fm=&amp;sme=&amp;cg=&amp;bdtype=0&amp;oriquery=&amp;objurl=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0142135541fe180000019ae9b8cf86.jpg%401280w_1l_2o_100sh.png&amp;fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bzv55s_z%26e3Bv54_z%26e3BvgAzdH3Fo56hAzdH3FZNzMxNTI8M2%3D%3D_z%26e3Bip4s&amp;gsm=0" title="test image" target="_blank" rel="noopener">image1</a></p>
 </li>
-<li><p><strong>android:layout_height=”wrap_content”</strong>时:</p>
+<li><p><code>android:layout_height=&quot;wrap_content&quot;</code>时:</p>
 <p>组件大小=所需大小+(L-所需大小和)*权重比例</p>
 <p>剩余大小为正则为正比，否则为反比</p>
 <p>该情况和组件内容占用大小有关，所以布局上并看不出，因为比例关系仅指剩余大小的比例；</p>
@@ -309,7 +309,7 @@
 <li>剩余大小为负</li>
 </ol>
 </li>
-<li><p><strong>android:layout_height=”match_parent”</strong>时：</p>
+<li><p><code>android:layout_height=&quot;match_parent&quot;</code>时：</p>
 <p>组件大小和权重成反比<br>组件大小=L+（L-（L+L…组件个数））*权重比例</p>
 <p>如果前面组件已经占满一屏，则剩余组件在屏之外位置，不可见。</p>
 <p>未完待续…</p>
