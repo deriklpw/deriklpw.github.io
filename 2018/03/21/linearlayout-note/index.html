@@ -15,18 +15,21 @@
 
 
 
-<meta name="description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。 LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例 例如: 在LinearLayout中放置三个Button1，Button2，Button3     android:layo">
+<meta name="description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。 LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例，剩余大小=屏幕大小-（所有组件大小的和），所以最后为：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 例如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LinearLayout android:layout_weight 属性用法总结">
 <meta property="og:url" content="http://yoursite.com/2018/03/21/linearlayout-note/index.html">
 <meta property="og:site_name" content="Derik&#39;s Blog">
-<meta property="og:description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。 LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例 例如: 在LinearLayout中放置三个Button1，Button2，Button3     android:layo">
+<meta property="og:description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。 LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例，剩余大小=屏幕大小-（所有组件大小的和），所以最后为：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 例如">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_0dp.png">
-<meta property="og:updated_time" content="2018-03-21T02:25:33.567Z">
+<meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_wrap_enough.png">
+<meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_wrap_less.png">
+<meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_match.png">
+<meta property="og:updated_time" content="2018-03-21T05:09:22.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinearLayout android:layout_weight 属性用法总结">
-<meta name="twitter:description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。 LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例 例如: 在LinearLayout中放置三个Button1，Button2，Button3     android:layo">
+<meta name="twitter:description" content="LinearLayout是很常用的一种布局，当考虑使用LinearLayout的时候，为了在布局时，达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。 LinearLayout中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例，剩余大小=屏幕大小-（所有组件大小的和），所以最后为：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 例如">
 <meta name="twitter:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_0dp.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -257,7 +260,7 @@
   
     <div class="article-meta">
       <a href="/2018/03/21/linearlayout-note/" class="article-date">
-      <time datetime="2018-03-21T02:25:33.599Z" itemprop="datePublished">2018-03-21</time>
+      <time datetime="2018-03-21T05:09:22.036Z" itemprop="datePublished">2018-03-21</time>
 </a>
 
 
@@ -289,35 +292,32 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><code>LinearLayout</code>是很常用的一种布局，当考虑使用<code>LinearLayout</code>的时候，为了在布局时，<br>达到较好的屏幕适配效果，一般会选择使用android:layout_weight属性。</p>
-<p><code>LinearLayout</code>中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例</p>
+        <p><code>LinearLayout</code>是很常用的一种布局，当考虑使用<code>LinearLayout</code>的时候，为了在布局时，<br>达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。</p>
+<p><code>LinearLayout</code>中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例，剩余大小=屏幕大小-（所有组件大小的和），所以最后为：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。</p>
 <p>例如:</p>
-<p>在<code>LinearLayout</code>中放置三个Button1，Button2，Button3 </p>
-<p>   <code>android:layout_width=&quot;match_parent&quot;</code></p>
-<p>   每个Button的<code>android:layout_weight</code>分别为1,2,3</p>
-<p>依据<code>android:layout_height</code>属性，分三种情况讨论<code>android:layout_weight</code>属性, L为屏幕大小（宽或高）：</p>
+<p>在<code>LinearLayout</code>中放置三个按钮，分别为Button1，Button2，Button3，指定<code>android:layout_height=&quot;wrap_content&quot;</code>不变，每个Button的<code>android:layout_weight</code>分别为1,2,3，依据<code>android:layout_width</code>属性的设置，分三种情况讨论<code>android:layout_weight</code>属性, L为屏幕大小（以宽为例）：</p>
 <ol>
-<li><p><code>android:layout_height=&quot;0dp&quot;</code>时:</p>
-<p>组件大小=0+L*权重比例</p>
-<p>组件大小和权重成正比</p>
-<p>则Button1的大小=0+L*（1/6），为（1/6）L; Button2的大小=0+L*(2/6)，为（2/6）L；<br>Button3的大小=0+L*(3/6)，为（3/6）L，<strong>Button1:Button2:Button3 = 1:2:3</strong></p>
-<p><img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_0dp.png" alt="image"></p>
+<li><p><code>android:layout_width=&quot;0dp&quot;</code>时:</p>
+<p>组件大小=0+（L-（0+0+0））*权重比例，组件大小和权重成正比。</p>
+<p>分别计算下各Button占的宽度，Button1的大小=0+（L-（0+0+0））*（1/6），为（1/6）L; Button2的大小=0+(L-（0+0+0）)*(2/6)，为（2/6）L；Button3的大小=0+(L-（0+0+0）)*(3/6)，为（3/6）L，所以<strong>Button1:Button2:Button3 = 1:2:3</strong>。</p>
+<p><img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_0dp.png" alt="image 0dp"></p>
 </li>
-<li><p><code>android:layout_height=&quot;wrap_content&quot;</code>时:</p>
-<p>组件大小=所需大小+(L-所需大小和)*权重比例</p>
-<p>剩余大小为正则为正比，否则为反比</p>
-<p>该情况和组件内容占用大小有关，所以布局上并看不出，因为比例关系仅指剩余大小的比例；</p>
+<li><p><code>android:layout_width=&quot;wrap_content&quot;</code>时:</p>
+<p>组件大小=所需大小+(L-各组件所需大小和)*权重比例，剩余大小，即(L-各组件所需大小和)为正，则为正比，否则为反比。</p>
+<p>该情况和组件内容占用大小有关，所以布局上并不是很明显的比例关系，因为比例关系仅指剩余大小的比例：</p>
 <ol>
-<li>剩余大小为正</li>
-<li>剩余大小为负</li>
+<li>剩余大小为正，即屏幕空间足够，所占和权重成正比。<br><img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_wrap_enough.png" alt="image enough"></li>
+<li>剩余大小为负，即屏幕空间不足，所占和权重成反比。<br><img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_wrap_less.png" alt="image less"></li>
 </ol>
 </li>
-<li><p><code>android:layout_height=&quot;match_parent&quot;</code>时：</p>
-<p>组件大小和权重成反比<br>组件大小=L+（L-（L+L…组件个数））*权重比例</p>
-<p>如果前面组件已经占满一屏，则剩余组件在屏之外位置，不可见。</p>
-<p>未完待续…</p>
+<li><p><code>android:layout_width=&quot;match_parent&quot;</code>时：</p>
+<p>组件大小=L+（L-（L+L+L））*权重比例，组件大小和权重成反比，如果前面组件已经占满屏幕，则剩余组件在屏之外位置，不可见。</p>
+<p>继续计算各Button占的宽度，Button1的大小=L+（L-（L+L+L））*（1/6），为（4/6）L; Button2的大小=0+（L-（L+L+L））*(2/6)，为（2/6）L；<br>Button3的大小=0+L（L-（L+L+L））*(3/6)，为0，所以<strong>Button1:Button2=2:1，Button3不可见</strong>。<br><img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/img/linear/weight_match.png" alt="image match"></p>
 </li>
 </ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p><code>LinearLayout</code>中各组件大小的计算方式：实际大小=指定大小+剩余大小*权重比例，按照这个计算方式去理解和使用，’android:layout_weight’属性用起来很简单。</p>
+</blockquote>
 
       
     </div>
@@ -328,8 +328,8 @@
     <div class="copyright">
         <p><span>本文标题:</span><a href="/2018/03/21/linearlayout-note/">LinearLayout android:layout_weight 属性用法总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">deriklpw</a></p>
-        <p><span>发布时间:</span>2018-03-21, 10:25:33</p>
-        <p><span>最后更新:</span>2018-03-21, 10:25:33</p>
+        <p><span>发布时间:</span>2018-03-21, 13:09:22</p>
+        <p><span>最后更新:</span>2018-03-21, 13:09:22</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/03/21/linearlayout-note/" title="LinearLayout android:layout_weight 属性用法总结">http://yoursite.com/2018/03/21/linearlayout-note/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/03/21/linearlayout-note/　　作者: deriklpw" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -343,12 +343,6 @@
 
 
     <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/03/21/test/">
-                    你好世界
-                </a>
-            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -365,7 +359,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">1.</span> <span class="toc-text">总结</span></a></li></ol>
         
     </div>
     <style>
@@ -437,9 +431,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/03/21/test/" title="上一篇: 你好世界">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -451,7 +443,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/test/">你好世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/linearlayout-note/">LinearLayout android:layout_weight 属性用法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/12/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/linearlayout-note/">LinearLayout android:layout_weight 属性用法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/12/hello-world/">Hello World</a></li></ul>
 
 
 
