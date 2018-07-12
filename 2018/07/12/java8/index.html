@@ -5,17 +5,17 @@
   
   <title>Java8的几个重要特性介绍 | Derik的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java8的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。 Java8的四个重要新特性:  Lambda； 方法引用； 默认方法； Stream。  1. LambdaLambda表达式：Lambda可以让函数当做一个方法的参数进行传递，并且让代码变得更加简洁。Lambda表达式省去了匿名类的麻烦，但Lambda只能给包含一个方法的接口定义，且Lambda的入参和返回值必须和接口">
+  <meta name="description" content="Java8的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。 Java8的四个重要新特性:  Lambda； 方法引用； 默认方法； Stream。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java8的几个重要特性介绍">
 <meta property="og:url" content="http://yoursite.com/2018/07/12/java8/index.html">
 <meta property="og:site_name" content="Derik的个人博客">
-<meta property="og:description" content="Java8的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。 Java8的四个重要新特性:  Lambda； 方法引用； 默认方法； Stream。  1. LambdaLambda表达式：Lambda可以让函数当做一个方法的参数进行传递，并且让代码变得更加简洁。Lambda表达式省去了匿名类的麻烦，但Lambda只能给包含一个方法的接口定义，且Lambda的入参和返回值必须和接口">
+<meta property="og:description" content="Java8的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。 Java8的四个重要新特性:  Lambda； 方法引用； 默认方法； Stream。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-12T07:37:34.655Z">
+<meta property="og:updated_time" content="2018-07-12T08:52:08.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java8的几个重要特性介绍">
-<meta name="twitter:description" content="Java8的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。 Java8的四个重要新特性:  Lambda； 方法引用； 默认方法； Stream。  1. LambdaLambda表达式：Lambda可以让函数当做一个方法的参数进行传递，并且让代码变得更加简洁。Lambda表达式省去了匿名类的麻烦，但Lambda只能给包含一个方法的接口定义，且Lambda的入参和返回值必须和接口">
+<meta name="twitter:description" content="Java8的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。 Java8的四个重要新特性:  Lambda； 方法引用； 默认方法； Stream。">
   
     <link rel="alternate" href="/atom.xml" title="Derik的个人博客" type="application/atom+xml">
   
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-java8" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/12/java8/" class="article-date">
-  <time datetime="2018-07-12T07:37:34.687Z" itemprop="datePublished">2018-07-12</time>
+  <time datetime="2018-07-12T08:52:08.447Z" itemprop="datePublished">2018-07-12</time>
 </a>
     
   </div>
@@ -86,15 +86,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Java8的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。</p>
-<p>Java8的四个重要新特性:</p>
+        <p><code>Java8</code>的新特性有很多，只对代表性的四个重要特性做一次总结，方便以后回顾。</p>
+<p><code>Java8</code>的四个重要新特性:</p>
 <ul>
 <li>Lambda；</li>
 <li>方法引用；</li>
 <li>默认方法；</li>
-<li>Stream。</li>
+<li>Stream。<a id="more"></a>
+<h1 id="1-Lambda"><a href="#1-Lambda" class="headerlink" title="1. Lambda"></a>1. Lambda</h1></li>
 </ul>
-<h1 id="1-Lambda"><a href="#1-Lambda" class="headerlink" title="1. Lambda"></a>1. Lambda</h1><p>Lambda表达式：Lambda可以让函数当做一个方法的参数进行传递，并且让代码变得更加简洁。Lambda表达式省去了匿名类的麻烦，但Lambda只能给包含一个方法的接口定义，且Lambda的入参和返回值必须和接口中的方法一致。<br>语法：<br>(type param1, type param2…) -&gt; {Statements}</p>
+<p><code>Lambda</code>表达式：Lambda可以让函数当做一个方法的参数进行传递，并且让代码变得更加简洁。<code>Lambda</code>表达式省去了匿名类的麻烦，但Lambda只能给包含一个方法的接口定义，且Lambda的入参和返回值必须和接口中的方法一致。<br>语法：<br>(type param1, type param2…) -&gt; {Statements}</p>
 <p>Lambda几个特性：</p>
 <ul>
 <li>参数类型可选：编译器可以自动识别参数的类型；</li>
@@ -125,7 +126,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/12/java8/" data-id="cjjib6sji0002lwfsd49jafs5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/12/java8/" data-id="cjjibsf1v00027rfsktna9ak2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -134,11 +135,15 @@
     
 <nav id="article-nav">
   
-  
-    <a href="/2018/07/12/LinearLayout/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">LinearLayout android:layout_weight属性用法总结</div>
+    <a href="/2018/07/12/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -199,15 +204,15 @@
       <ul>
         
           <li>
+            <a href="/2018/07/12/linearLayout/">LinearLayout android:layout_weight属性用法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/12/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
             <a href="/2018/07/12/java8/">Java8的几个重要特性介绍</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/12/LinearLayout/">LinearLayout android:layout_weight属性用法总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/11/hello-world/">Hello World</a>
           </li>
         
       </ul>
