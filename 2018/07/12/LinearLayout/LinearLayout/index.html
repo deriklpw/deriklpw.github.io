@@ -3,15 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Derik的个人博客</title>
+  <title>LinearLayout android:layout_weight 属性用法总结 | Derik的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Derik的个人博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="&amp;emsp;&amp;emsp;LinearLayout，很常用的一种布局，当在使用这种布局方式时，为了达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。当为布局中的每个组件指定了大小和权重之后，我们的android系统如何计算各组件实际所占空间呢？ 贴个自己常用的计算方法：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 用一屏幕的大小减去所有组件大小">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinearLayout android:layout_weight 属性用法总结">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/LinearLayout/LinearLayout/index.html">
 <meta property="og:site_name" content="Derik的个人博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;LinearLayout，很常用的一种布局，当在使用这种布局方式时，为了达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。当为布局中的每个组件指定了大小和权重之后，我们的android系统如何计算各组件实际所占空间呢？ 贴个自己常用的计算方法：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 用一屏幕的大小减去所有组件大小">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/home/derik/deriklpw.github.io/source/_posts/LinearLayout/width_0.png">
+<meta property="og:image" content="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&fm=27&gp=0.jpg">
+<meta property="og:image" content="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&fm=27&gp=0.jpg">
+<meta property="og:image" content="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&fm=27&gp=0.jpg">
+<meta property="og:updated_time" content="2018-07-12T06:32:44.071Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Derik的个人博客">
+<meta name="twitter:title" content="LinearLayout android:layout_weight 属性用法总结">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;LinearLayout，很常用的一种布局，当在使用这种布局方式时，为了达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。当为布局中的每个组件指定了大小和权重之后，我们的android系统如何计算各组件实际所占空间呢？ 贴个自己常用的计算方法：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 用一屏幕的大小减去所有组件大小">
+<meta name="twitter:image" content="http://yoursite.com/home/derik/deriklpw.github.io/source/_posts/LinearLayout/width_0.png">
   
     <link rel="alternate" href="/atom.xml" title="Derik的个人博客" type="application/atom+xml">
   
@@ -60,9 +69,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-LinearLayout/LinearLayout" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LinearLayout/LinearLayout" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/12/LinearLayout/LinearLayout/" class="article-date">
   <time datetime="2018-07-12T06:32:44.091Z" itemprop="datePublished">2018-07-12</time>
@@ -75,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/12/LinearLayout/LinearLayout/">LinearLayout android:layout_weight 属性用法总结</a>
+    <h1 class="article-title" itemprop="name">
+      LinearLayout android:layout_weight 属性用法总结
     </h1>
   
 
@@ -113,61 +120,44 @@
     </footer>
   </div>
   
-</article>
-
-
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/11/hello-world/" class="article-date">
-  <time datetime="2018-07-11T03:08:44.082Z" itemprop="datePublished">2018-07-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/11/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2018/07/11/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/11/hello-world/" data-id="cjji6ejp60000wdfs30pyjj09" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
 
 
 
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTU4Mi8xMjExOA==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
 
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
 
   
+
 
 </section>
         
