@@ -12,15 +12,15 @@
 <meta property="og:site_name" content="Derik的个人博客">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;LinearLayout，很常用的一种布局，当在使用这种布局方式时，为了达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。当为布局中的每个组件指定了大小和权重之后，我们的android系统如何计算各组件实际所占空间呢？ 贴个自己常用的计算方法：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 用一屏幕的大小减去所有组件大小">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/home/derik/deriklpw.github.io/source/_posts/LinearLayout/width_0.png">
-<meta property="og:image" content="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&fm=27&gp=0.jpg">
-<meta property="og:image" content="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&fm=27&gp=0.jpg">
-<meta property="og:image" content="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&fm=27&gp=0.jpg">
-<meta property="og:updated_time" content="2018-07-12T06:32:44.071Z">
+<meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_0.png">
+<meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_match.png">
+<meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_enough.png">
+<meta property="og:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_less.png">
+<meta property="og:updated_time" content="2018-07-12T06:42:25.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinearLayout android:layout_weight 属性用法总结">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;LinearLayout，很常用的一种布局，当在使用这种布局方式时，为了达到较好的屏幕适配效果，可以选择使用android:layout_weight属性。当为布局中的每个组件指定了大小和权重之后，我们的android系统如何计算各组件实际所占空间呢？ 贴个自己常用的计算方法：实际大小=指定大小+（屏幕大小-（所有组件大小的和））*权重比例。 用一屏幕的大小减去所有组件大小">
-<meta name="twitter:image" content="http://yoursite.com/home/derik/deriklpw.github.io/source/_posts/LinearLayout/width_0.png">
+<meta name="twitter:image" content="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_0.png">
   
     <link rel="alternate" href="/atom.xml" title="Derik的个人博客" type="application/atom+xml">
   
@@ -72,7 +72,7 @@
         <section id="main"><article id="post-LinearLayout/LinearLayout" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/12/LinearLayout/LinearLayout/" class="article-date">
-  <time datetime="2018-07-12T06:32:44.091Z" itemprop="datePublished">2018-07-12</time>
+  <time datetime="2018-07-12T06:42:25.050Z" itemprop="datePublished">2018-07-12</time>
 </a>
     
   </div>
@@ -97,16 +97,16 @@
 <p>示例:<br>以<code>android:layout_width</code>为例，验证计算方式（屏幕宽度：L）<br>在<code>LinearLayout</code>中放置三个按钮，分别为Button1，Button2，Button3，<code>android:layout_height=&quot;wrap_content&quot;</code>均指定为包裹内容，每个Button的<code>android:layout_weight</code>分别为1，2，3。</p>
 <p>依据<code>android:layout_width</code>属性的设置，分三种情况：</p>
 <ol>
-<li><code>android:layout_width=&quot;0dp&quot;</code>时：<br>组件大小=0+（L-（0+0+0））*权重比例，组件大小和权重成正比。<br>各Button占的宽度：<br>Button1=0+(L-(0+0+0))*(1/6)，为1/6L；<br>Button2=0+(L-(0+0+0))*(2/6)，为2/6L；<br>Button3=0+(L-(0+0+0))*(3/6)，为3/6L。<br>所以Button1:Button2:Button3 = 1:2:3。</li>
+<li><p><code>android:layout_width=&quot;0dp&quot;</code>时：<br>组件大小=0+（L-（0+0+0））*权重比例，组件大小和权重成正比。<br>各Button占的宽度：<br>Button1=0+(L-(0+0+0))*(1/6)，为1/6L；<br>Button2=0+(L-(0+0+0))*(2/6)，为2/6L；<br>Button3=0+(L-(0+0+0))*(3/6)，为3/6L。<br>所以Button1:Button2:Button3 = 1:2:3。</p>
+<p> <img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_0.png" alt="layout_width=&quot;0dp&quot;" title="0 dp"></p>
+</li>
+<li><p><code>android:layout_width=&quot;match_parent&quot;</code>时：<br>组件大小=L+（L-（L+L+L））*权重比例，组件大小和权重成反比。<br>如果前面组件已经占满屏幕，则剩余组件在屏之外位置，不可见。<br>各Button占的宽度：<br>每个Button的<code>layout_width</code>指定为<code>match_parent</code>，即表示每个Button指定大小为父组件宽度，即L。<br>Button1=L+(L-(L+L+L))*(1/6)，为4/6L；<br>Button2=L+(L-(L+L+L))*(2/6)，为2/6L；<br>Button3=L+L(L-(L+L+L))*(3/6)，为0。<br>所以Button1:Button2=2:1，Button3不可见。</p>
+<p> <img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_match.png" alt="layout_width=&quot;match_parent&quot;" title="match_parent"></p>
+</li>
 </ol>
-<p><img src="/home/derik/deriklpw.github.io/source/_posts/LinearLayout/width_0.png" alt="layout_width=&quot;0dp&quot;"></p>
-<ol start="2">
-<li><code>android:layout_width=&quot;match_parent&quot;</code>时：<br>组件大小=L+（L-（L+L+L））*权重比例，组件大小和权重成反比。<br>如果前面组件已经占满屏幕，则剩余组件在屏之外位置，不可见。<br>各Button占的宽度：<br>每个Button的<code>layout_width</code>指定为<code>match_parent</code>，即表示每个Button指定大小为父组件宽度，即L。<br>Button1=L+(L-(L+L+L))*(1/6)，为4/6L；<br>Button2=L+(L-(L+L+L))*(2/6)，为2/6L；<br>Button3=L+L(L-(L+L+L))*(3/6)，为0。<br>所以Button1:Button2=2:1，Button3不可见。</li>
-</ol>
-<p><img src="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&amp;fm=27&amp;gp=0.jpg" alt="layout_width=&quot;match_parent&quot;" title="match_parent"></p>
 <ol start="3">
-<li><p><code>android:layout_width=&quot;wrap_content&quot;</code>时：<br>组件大小=所需大小+(L-各组件所需大小和)*权重比例，剩余大小即(L-各组件所需大小和)为正，则为正比，否则为反比。<br>该情况和组件内容占用大小有关，所以布局上并不是很明显的比例关系，因为比例关系仅指剩余大小的比例：<br> 剩余大小为正，即屏幕空间足够，所占空间和权重成正比。<br> <img src="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&amp;fm=27&amp;gp=0.jpg" alt="layout_width=&quot;wrap_content&quot; enough" title="wrap_content enough"></p>
-<p> 剩余大小为负，即屏幕空间不足，所占空间和权重成反比，下面的图可能有点难看，希望想表达的意思到了。<br> <img src="http://img5.imgtn.bdimg.com/it/u=751540893,967149740&amp;fm=27&amp;gp=0.jpg" alt="layout_width=&quot;wrap_content&quot; less" title="wrap_content less"></p>
+<li><p><code>android:layout_width=&quot;wrap_content&quot;</code>时：<br>组件大小=所需大小+(L-各组件所需大小和)*权重比例，剩余大小即(L-各组件所需大小和)为正，则为正比，否则为反比。<br>该情况和组件内容占用大小有关，所以布局上并不是很明显的比例关系，因为比例关系仅指剩余大小的比例：<br> 剩余大小为正，即屏幕空间足够，所占空间和权重成正比。<br> <img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_enough.png" alt="layout_width=&quot;wrap_content&quot; enough" title="wrap_content enough"></p>
+<p> 剩余大小为负，即屏幕空间不足，所占空间和权重成反比，下面的图可能有点难看，希望想表达的意思到了。<br> <img src="https://github.com/deriklpw/deriklpw.github.io/raw/master/css/images/linearlayout/width_less.png" alt="layout_width=&quot;wrap_content&quot; less" title="wrap_content less"></p>
 </li>
 </ol>
 <p><code>LinearLayout</code>的<code>android:layout_weight</code>属性用起来很简单，但是如果想深入理解其原理，就需要参考源代码了。</p>
@@ -114,7 +114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/12/LinearLayout/LinearLayout/" data-id="cjji6lvxt000182fsflbegmcf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/12/LinearLayout/LinearLayout/" data-id="cjji74lfl0001onfstqpunuan" class="article-share-link">Share</a>
       
       
     </footer>
