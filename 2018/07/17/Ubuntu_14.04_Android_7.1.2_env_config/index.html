@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Derik的个人博客">
 <meta property="og:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-17T01:33:44.154Z">
+<meta property="og:updated_time" content="2018-07-17T02:14:09.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04 Android 7.1.2源码编译">
 <meta name="twitter:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-Ubuntu_14.04_Android_7.1.2_env_config" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" class="article-date">
-  <time datetime="2018-07-17T01:33:44.186Z" itemprop="datePublished">2018-07-17</time>
+  <time datetime="2018-07-17T02:14:09.578Z" itemprop="datePublished">2018-07-17</time>
 </a>
     
   </div>
@@ -119,7 +119,7 @@
 <p> 到这里，Java OpenJdk安装好了，接下来是安装编译时需要的各种依赖包。</p>
 </li>
 </ol>
-<h1 id="二、安装依赖包"><a href="#二、安装依赖包" class="headerlink" title="二、安装依赖包"></a>二、安装依赖包</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32readline-gplv2-dev lib32z1-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc u-boot-tools lib32z1 lib32ncurses5 lib32bz2<span class="number">-1.0</span> gcc-arm-linux-gnueabi make ncurses-dev gawk python-lunch</span><br></pre></td></tr></table></figure>
+<h1 id="二、安装依赖包"><a href="#二、安装依赖包" class="headerlink" title="二、安装依赖包"></a>二、安装依赖包</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32readline-gplv2-dev lib32z1-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc u-boot-tools lib32z1 lib32ncurses5 lib32bz2<span class="number">-1.0</span> gcc-arm-linux-gnueabi make ncurses-dev gawk python-lunch u-boot-tools</span><br></pre></td></tr></table></figure>
 <p>环境基本OK，接下来可以编译了。由于是先配好再来写的这份文档，如果有一两个细节疏忽，网上的前辈们有很多经验帖可以参考，也欢迎在下面评论区留言指正。</p>
 <h1 id="三、开始编译"><a href="#三、开始编译" class="headerlink" title="三、开始编译"></a>三、开始编译</h1><ol>
 <li><p>先编译内核<br>不同的厂商不一样，这里只贴全志的，仅供参考</p>
@@ -168,12 +168,17 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ fastboot flash boot out/target/product/octopus-f1/boot.img</span><br><span class="line">$ fastboot flash system out/target/product/octopus-f1/system.img</span><br><span class="line">$ fastboot reboot</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h1 id="五、编译错误处理"><a href="#五、编译错误处理" class="headerlink" title="五、编译错误处理"></a>五、编译错误处理</h1><ol>
+<li>内存不足<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit ./prebuilts/sdk/tools/jack-admin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>找到参数JACK_SERVER_VM_ARGUMENTS，修改为<br>JACK_SERVER_VM_ARGUMENTS=”${JACK_SERVER_VM_ARGUMENTS:=-Dfile.encoding=UTF-8 -XX:+TieredCompilation <font color="#ff0000">-Xmx3g</font>}”<br>如果依然提示内存不足，再改大一点。</p>
 <p>编译烧录上没有很长内容，比较简单，但是在没有自己走一遍之前，免不了有无从下手的感觉，编译烧录成功了，及时记录下相关知识，方便以后查阅，也希望对有相同兴趣爱好的人有所帮助。学无止境，共勉之！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjjp11mbw0000l2fs6iickwel" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjjp2lohq0000c0fscsr6ong5" class="article-share-link">Share</a>
       
       
     </footer>
