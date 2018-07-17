@@ -5,17 +5,17 @@
   
   <title>Ubuntu 14.04 Android 7.1.2源码编译 | Derik的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
+  <meta name="description" content="&amp;emsp;&amp;emsp;一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 14.04 Android 7.1.2源码编译">
 <meta property="og:url" content="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/index.html">
 <meta property="og:site_name" content="Derik的个人博客">
-<meta property="og:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-17T02:14:09.518Z">
+<meta property="og:updated_time" content="2018-07-17T02:54:34.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04 Android 7.1.2源码编译">
-<meta name="twitter:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
   
     <link rel="alternate" href="/atom.xml" title="Derik的个人博客" type="application/atom+xml">
   
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-Ubuntu_14.04_Android_7.1.2_env_config" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" class="article-date">
-  <time datetime="2018-07-17T02:14:09.578Z" itemprop="datePublished">2018-07-17</time>
+  <time datetime="2018-07-17T02:54:34.530Z" itemprop="datePublished">2018-07-17</time>
 </a>
     
   </div>
@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。</p>
+        <p>&emsp;&emsp;一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。</p>
 <a id="more"></a>
 <h1 id="一、安装Open-JDK8"><a href="#一、安装Open-JDK8" class="headerlink" title="一、安装Open JDK8"></a>一、安装Open JDK8</h1><ol>
 <li><p>增加更新源仓库</p>
@@ -108,10 +108,8 @@
 </li>
 <li><p>查看java版本信息</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">openjdk version <span class="string">"1.8.0_91"</span></span><br><span class="line">OpenJDK Runtime Environment (build <span class="number">1.8</span><span class="number">.0</span>_91<span class="number">-8</span>u91-b14<span class="number">-0</span>ubuntu4~<span class="number">12.04</span>-b14)</span><br><span class="line">OpenJDK <span class="number">64</span>-Bit Server VM (build <span class="number">25.91</span>-b14, mixed mode)</span><br></pre></td></tr></table></figure>
+<p> 显示如上信息，说明配置成功</p>
 </li>
-</ol>
-<p>显示如上信息，说明配置成功</p>
-<ol start="7">
 <li><p>如果有多个java版本，可以设置默认java版本<br>例如，再安装了一个java7</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java<span class="number">-7</span>-openjdk-amd64/bin/java <span class="number">1070</span></span><br><span class="line">$ sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java<span class="number">-7</span>-openjdk-amd64/bin/javac <span class="number">1070</span></span><br><span class="line"></span><br><span class="line">$ sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java<span class="number">-8</span>-openjdk-amd64/bin/java <span class="number">600</span></span><br><span class="line">$ sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java<span class="number">-8</span>-openjdk-amd64/bin/javac <span class="number">600</span></span><br></pre></td></tr></table></figure>
 <p> 此时，可查看当前各种JDK版本和配置默认java版本：</p>
@@ -119,8 +117,11 @@
 <p> 到这里，Java OpenJdk安装好了，接下来是安装编译时需要的各种依赖包。</p>
 </li>
 </ol>
-<h1 id="二、安装依赖包"><a href="#二、安装依赖包" class="headerlink" title="二、安装依赖包"></a>二、安装依赖包</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32readline-gplv2-dev lib32z1-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc u-boot-tools lib32z1 lib32ncurses5 lib32bz2<span class="number">-1.0</span> gcc-arm-linux-gnueabi make ncurses-dev gawk python-lunch u-boot-tools</span><br></pre></td></tr></table></figure>
-<p>环境基本OK，接下来可以编译了。由于是先配好再来写的这份文档，如果有一两个细节疏忽，网上的前辈们有很多经验帖可以参考，也欢迎在下面评论区留言指正。</p>
+<h1 id="二、安装依赖包"><a href="#二、安装依赖包" class="headerlink" title="二、安装依赖包"></a>二、安装依赖包</h1><ul>
+<li>搜集的需要安装的依赖包如下:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32readline-gplv2-dev lib32z1-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc u-boot-tools lib32z1 lib32ncurses5 lib32bz2<span class="number">-1.0</span> gcc-arm-linux-gnueabi make ncurses-dev gawk python-lunch u-boot-tools</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;&emsp;环境基本OK，接下来可以编译了。由于是先配好再来写的这份文档，如果有一两个细节疏忽，网上的前辈们有很多经验帖可以参考，也欢迎在下面评论区留言指正。</p>
 <h1 id="三、开始编译"><a href="#三、开始编译" class="headerlink" title="三、开始编译"></a>三、开始编译</h1><ol>
 <li><p>先编译内核<br>不同的厂商不一样，这里只贴全志的，仅供参考</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">$ cd lichee</span><br><span class="line">$ ./build.sh config</span><br><span class="line"></span><br><span class="line">Welcome to mkscript setup progress</span><br><span class="line">All available chips:</span><br><span class="line">   <span class="number">0.</span> sun50iw1p1</span><br><span class="line">   <span class="number">1.</span> sun8iw1p1</span><br><span class="line">   <span class="number">2.</span> sun8iw3p1</span><br><span class="line">   <span class="number">3.</span> sun8iw5p1</span><br><span class="line">   <span class="number">4.</span> sun8iw6p1</span><br><span class="line">   <span class="number">5.</span> sun8iw7p1</span><br><span class="line">   <span class="number">6.</span> sun8iw8p1</span><br><span class="line">   <span class="number">7.</span> sun8iw9p1</span><br><span class="line">   <span class="number">8.</span> sun9iw1p1</span><br><span class="line">Choice: <span class="number">4</span></span><br><span class="line">All available platforms:</span><br><span class="line">   <span class="number">0.</span> android</span><br><span class="line">   <span class="number">1.</span> dragonboard</span><br><span class="line">   <span class="number">2.</span> linux</span><br><span class="line">   <span class="number">3.</span> camdroid</span><br><span class="line">   <span class="number">4.</span> secureandroid</span><br><span class="line">Choice: <span class="number">0</span></span><br><span class="line">All available kernel:</span><br><span class="line">   <span class="number">0.</span> linux<span class="number">-3.4</span></span><br><span class="line">Choice: <span class="number">0</span></span><br><span class="line">All available boards:</span><br><span class="line">   <span class="number">0.</span> f1</span><br><span class="line">   <span class="number">1.</span> fpga</span><br><span class="line">   <span class="number">2.</span> n1</span><br><span class="line">   <span class="number">3.</span> perf1_v1_0</span><br><span class="line">   <span class="number">4.</span> perf2_v1_0</span><br><span class="line">   <span class="number">5.</span> perf3_v1_0</span><br><span class="line">   <span class="number">6.</span> qc</span><br><span class="line">Choice: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">$ ./build.sh</span><br></pre></td></tr></table></figure>
@@ -169,16 +170,23 @@
 </li>
 </ol>
 <h1 id="五、编译错误处理"><a href="#五、编译错误处理" class="headerlink" title="五、编译错误处理"></a>五、编译错误处理</h1><ol>
-<li>内存不足<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit ./prebuilts/sdk/tools/jack-admin</span><br></pre></td></tr></table></figure>
-</li>
+<li>内存不足</li>
 </ol>
+<ul>
+<li>修改文件jack-admin<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit ./prebuilts/sdk/tools/jack-admin</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>找到参数JACK_SERVER_VM_ARGUMENTS，修改为<br>JACK_SERVER_VM_ARGUMENTS=”${JACK_SERVER_VM_ARGUMENTS:=-Dfile.encoding=UTF-8 -XX:+TieredCompilation <font color="#ff0000">-Xmx3g</font>}”<br>如果依然提示内存不足，再改大一点。</p>
-<p>编译烧录上没有很长内容，比较简单，但是在没有自己走一遍之前，免不了有无从下手的感觉，编译烧录成功了，及时记录下相关知识，方便以后查阅，也希望对有相同兴趣爱好的人有所帮助。学无止境，共勉之！</p>
+<ul>
+<li>重启jack server<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./prebuilts/sdk/tools/jack-admin  stop-server</span><br><span class="line">$ ./prebuilts/sdk/tools/jack-admin  start-server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;&emsp;编译烧录上没有很长内容，比较简单，但是在没有自己走一遍之前，免不了有无从下手的感觉，编译烧录成功了，及时记录下相关知识，方便以后查阅，也希望对有相同兴趣爱好的人有所帮助。学无止境，共勉之！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjjp2lohq0000c0fscsr6ong5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjjp3x1lf0001jbfss8lprosj" class="article-share-link">Share</a>
       
       
     </footer>
