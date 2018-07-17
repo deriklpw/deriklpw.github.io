@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Derik的个人博客">
 <meta property="og:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-17T01:22:04.470Z">
+<meta property="og:updated_time" content="2018-07-17T01:33:44.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04 Android 7.1.2源码编译">
 <meta name="twitter:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-Ubuntu_14.04_Android_7.1.2_env_config" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" class="article-date">
-  <time datetime="2018-07-17T01:22:04.514Z" itemprop="datePublished">2018-07-17</time>
+  <time datetime="2018-07-17T01:33:44.186Z" itemprop="datePublished">2018-07-17</time>
 </a>
     
   </div>
@@ -131,9 +131,11 @@
 <li><p>执行lunch，选择要编译的板</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lunch</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>拷贝内核至输出目录<br>$ extract-bsp</p>
+<li><p>拷贝内核至输出目录</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ extract-bsp</span><br></pre></td></tr></table></figure>
 </li>
-<li>开始编译<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -j8 //<span class="number">8</span>为线程数，可依据电脑配置设置</span><br></pre></td></tr></table></figure>
+<li><p>开始编译</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -j8 //<span class="number">8</span>为线程数，可依据电脑配置设置</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>编译成功之后，生成的文件会在out/target目录下</p>
@@ -171,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjjp0rxda0000f4fsaiaqo66b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjjp11mbw0000l2fs6iickwel" class="article-share-link">Share</a>
       
       
     </footer>
