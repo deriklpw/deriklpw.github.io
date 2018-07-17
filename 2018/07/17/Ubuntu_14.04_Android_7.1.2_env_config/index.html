@@ -8,11 +8,11 @@
   <meta name="description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 14.04 Android 7.1.2源码编译">
-<meta property="og:url" content="http://yoursite.com/2018/07/13/Ubuntu 14.04 Android 7.1.2源码编译/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/index.html">
 <meta property="og:site_name" content="Derik的个人博客">
 <meta property="og:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-13T10:00:46.214Z">
+<meta property="og:updated_time" content="2018-07-17T01:22:04.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04 Android 7.1.2源码编译">
 <meta name="twitter:description" content="一直想入手Framework，今天终于踏上前进的步伐，从编译环境开始，记录点滴，致多年后的自己。源码的下载这里就暂时不写了，后面有需要再补上去，先介绍环境配置，编译和烧录。">
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Ubuntu 14.04 Android 7.1.2源码编译" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Ubuntu_14.04_Android_7.1.2_env_config" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/13/Ubuntu 14.04 Android 7.1.2源码编译/" class="article-date">
-  <time datetime="2018-07-13T10:00:46.266Z" itemprop="datePublished">2018-07-13</time>
+    <a href="/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" class="article-date">
+  <time datetime="2018-07-17T01:22:04.514Z" itemprop="datePublished">2018-07-17</time>
 </a>
     
   </div>
@@ -100,8 +100,8 @@
 </li>
 <li><p>配置环境变量，可以选择不同地方进行配置，~/.bashrc，/etc/profile，或/etc/environment</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p> 在其最后面添加如下代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/java<span class="number">-8</span>-openjdk-amd64</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p> 在其最后面添加如下环境变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/java<span class="number">-8</span>-openjdk-amd64</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export ANDROID_SDK=SDK的安装路径</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$&#123;ANDROID_SDK&#125;/platform-tools:$&#123;ANDROID_SDK&#125;/tools:$PATH</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>更新导入，或者重启终端</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.bashrc</span><br></pre></td></tr></table></figure>
@@ -122,18 +122,22 @@
 <h1 id="二、安装依赖包"><a href="#二、安装依赖包" class="headerlink" title="二、安装依赖包"></a>二、安装依赖包</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32readline-gplv2-dev lib32z1-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc u-boot-tools lib32z1 lib32ncurses5 lib32bz2<span class="number">-1.0</span> gcc-arm-linux-gnueabi make ncurses-dev gawk python-lunch</span><br></pre></td></tr></table></figure>
 <p>环境基本OK，接下来可以编译了。由于是先配好再来写的这份文档，如果有一两个细节疏忽，网上的前辈们有很多经验帖可以参考，也欢迎在下面评论区留言指正。</p>
 <h1 id="三、开始编译"><a href="#三、开始编译" class="headerlink" title="三、开始编译"></a>三、开始编译</h1><ol>
+<li><p>先编译内核<br>不同的厂商不一样，这里只贴全志的，仅供参考</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">$ cd lichee</span><br><span class="line">$ ./build.sh config</span><br><span class="line"></span><br><span class="line">Welcome to mkscript setup progress</span><br><span class="line">All available chips:</span><br><span class="line">   <span class="number">0.</span> sun50iw1p1</span><br><span class="line">   <span class="number">1.</span> sun8iw1p1</span><br><span class="line">   <span class="number">2.</span> sun8iw3p1</span><br><span class="line">   <span class="number">3.</span> sun8iw5p1</span><br><span class="line">   <span class="number">4.</span> sun8iw6p1</span><br><span class="line">   <span class="number">5.</span> sun8iw7p1</span><br><span class="line">   <span class="number">6.</span> sun8iw8p1</span><br><span class="line">   <span class="number">7.</span> sun8iw9p1</span><br><span class="line">   <span class="number">8.</span> sun9iw1p1</span><br><span class="line">Choice: <span class="number">4</span></span><br><span class="line">All available platforms:</span><br><span class="line">   <span class="number">0.</span> android</span><br><span class="line">   <span class="number">1.</span> dragonboard</span><br><span class="line">   <span class="number">2.</span> linux</span><br><span class="line">   <span class="number">3.</span> camdroid</span><br><span class="line">   <span class="number">4.</span> secureandroid</span><br><span class="line">Choice: <span class="number">0</span></span><br><span class="line">All available kernel:</span><br><span class="line">   <span class="number">0.</span> linux<span class="number">-3.4</span></span><br><span class="line">Choice: <span class="number">0</span></span><br><span class="line">All available boards:</span><br><span class="line">   <span class="number">0.</span> f1</span><br><span class="line">   <span class="number">1.</span> fpga</span><br><span class="line">   <span class="number">2.</span> n1</span><br><span class="line">   <span class="number">3.</span> perf1_v1_0</span><br><span class="line">   <span class="number">4.</span> perf2_v1_0</span><br><span class="line">   <span class="number">5.</span> perf3_v1_0</span><br><span class="line">   <span class="number">6.</span> qc</span><br><span class="line">Choice: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">$ ./build.sh</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>进入源码根目录，执行源码环境配置文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source build/envsetup.sh</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行lunch，选择要编译的板</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lunch</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>开始编译</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -j8 //<span class="number">8</span>为线程数，可依据电脑配置设置</span><br></pre></td></tr></table></figure>
+<li><p>拷贝内核至输出目录<br>$ extract-bsp</p>
+</li>
+<li>开始编译<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -j8 //<span class="number">8</span>为线程数，可依据电脑配置设置</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>编译成功之后，生成的文件会在out/target目录下</p>
-<ol start="4">
+<ol start="6">
 <li>打包成烧录img<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pack -d</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -156,7 +160,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SUBSYSTEM==<span class="string">"usb"</span>, ATTR&#123;idVendor&#125;==<span class="string">"0012"</span>, MODE=<span class="string">"0666"</span>, GROUP=<span class="string">"plugdev"</span></span><br><span class="line">SUBSYSTEM==<span class="string">"usb"</span>, ATTR&#123;idVendor&#125;==<span class="string">"1b8e"</span>, ATTRS&#123;idProduct&#125;==<span class="string">"c003"</span>, MODE=<span class="string">"0666"</span>, GROUP=<span class="string">"plugdev"</span></span><br><span class="line">SUBSYSTEM==<span class="string">"usb"</span>, ATTR&#123;idVendor&#125;==<span class="string">"0489"</span>, ATTRS&#123;idProduct&#125;==<span class="string">"0007"</span>, MODE=<span class="string">"0666"</span>, GROUP=<span class="string">"plugdev"</span></span><br><span class="line">SUBSYSTEM==<span class="string">"usb"</span>, ATTR&#123;idVendor&#125;==<span class="string">"18d1"</span>, ATTRS&#123;idProduct&#125;==<span class="string">"4ee7"</span>, MODE=<span class="string">"0666"</span>, GROUP=<span class="string">"plugdev"</span></span><br><span class="line">SUBSYSTEM==<span class="string">"usb"</span>, ATTR&#123;idVendor&#125;==<span class="string">"1f3a"</span>, ATTRS&#123;idProduct&#125;==<span class="string">"1010"</span>, MODE=<span class="string">"0666"</span>, GROUP=<span class="string">"plugdev"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>重启udev</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/udev/ restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service udev restart</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>fastboot devices检测到设备后，开始烧录img</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ fastboot flash boot out/target/product/octopus-f1/boot.img</span><br><span class="line">$ fastboot flash system out/target/product/octopus-f1/system.img</span><br><span class="line">$ fastboot reboot</span><br></pre></td></tr></table></figure>
@@ -167,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/13/Ubuntu 14.04 Android 7.1.2源码编译/" data-id="cjjjtcbb90000ykfsg4bje3s9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjjp0rxda0000f4fsaiaqo66b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +245,7 @@
       <ul>
         
           <li>
-            <a href="/2018/07/13/Ubuntu 14.04 Android 7.1.2源码编译/">Ubuntu 14.04 Android 7.1.2源码编译</a>
+            <a href="/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/">Ubuntu 14.04 Android 7.1.2源码编译</a>
           </li>
         
           <li>
