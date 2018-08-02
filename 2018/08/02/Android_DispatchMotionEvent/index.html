@@ -5,17 +5,17 @@
   
   <title>Android事件分发机制（一） | Derik的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、关于事件分发的几个问题事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。">
+  <meta name="description" content="事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android事件分发机制（一）">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/Android_DispatchMotionEvent/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/Android_DispatchMotionEvent/index.html">
 <meta property="og:site_name" content="Derik的个人博客">
-<meta property="og:description" content="一、关于事件分发的几个问题事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。">
+<meta property="og:description" content="事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-31T10:06:17.510Z">
+<meta property="og:updated_time" content="2018-08-02T10:34:19.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件分发机制（一）">
-<meta name="twitter:description" content="一、关于事件分发的几个问题事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。">
+<meta name="twitter:description" content="事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。">
   
     <link rel="alternate" href="/atom.xml" title="Derik的个人博客" type="application/atom+xml">
   
@@ -66,8 +66,8 @@
       <div class="outer">
         <section id="main"><article id="post-Android_DispatchMotionEvent" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/31/Android_DispatchMotionEvent/" class="article-date">
-  <time datetime="2018-07-31T10:06:17.534Z" itemprop="datePublished">2018-07-31</time>
+    <a href="/2018/08/02/Android_DispatchMotionEvent/" class="article-date">
+  <time datetime="2018-08-02T10:34:19.714Z" itemprop="datePublished">2018-08-02</time>
 </a>
     
   </div>
@@ -86,8 +86,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、关于事件分发的几个问题"><a href="#一、关于事件分发的几个问题" class="headerlink" title="一、关于事件分发的几个问题"></a>一、关于事件分发的几个问题</h1><p>事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。<br><a id="more"></a></p>
-<ol>
+        <p>事件分发机制有点复杂，而且似乎笼罩着一层神秘的面纱。为了揭开它，决定进去源码里面看一看，并把过程记录下来，作为一份笔记。如果对大家理解事件分发机制有所帮助，那是再好不过的事情。首先，将稍微整理事件分发机制中，需要理清的几个问题，然后才开始看源码。<br><a id="more"></a></p>
+<h1 id="关于事件分发的几个问题"><a href="#关于事件分发的几个问题" class="headerlink" title="关于事件分发的几个问题"></a>关于事件分发的几个问题</h1><ol>
 <li>为什么要进行事件分发？</li>
 </ol>
 <p>用户在Android系统屏幕上进行操作后，会有相应的事件产生。当产生事件的区域，有多个组件可以响应这个事件时，Android系统需要事件分发机制，来决定该事件传递给哪一个组件进行处理。</p>
@@ -103,10 +103,10 @@
 <li>如何进行事件分发？</li>
 </ol>
 <p>采用责任链式的设计模式，事件层层传递，从上往下，再从下往上，寻找最终消费事件的组件，未找到，则将该次事件丢弃。</p>
-<h1 id="二、事件分发详解"><a href="#二、事件分发详解" class="headerlink" title="二、事件分发详解"></a>二、事件分发详解</h1><p>事件分发的主体主要是ViewGroup和View，虽然ViewGroup也是继承自View，但是在事件的处理上ViewGroup和View所需要考虑的因素不同，处理过程有所不同，因为ViewGroup除了要考虑自己，还需要考虑其中的各个子View。至于Activity，理解了ViewGroup事件分发，Activity差不多也通了。所以，将事件分发分为两类进行分析：</p>
+<h1 id="事件分发详解"><a href="#事件分发详解" class="headerlink" title="事件分发详解"></a>事件分发详解</h1><p>事件分发的主体主要是ViewGroup和View，虽然ViewGroup也是继承自View，但是在事件的处理上ViewGroup和View所需要考虑的因素不同，处理过程有所不同，因为ViewGroup除了要考虑自己，还需要考虑其中的各个子View。至于Activity，理解了ViewGroup事件分发，Activity差不多也通了。所以，将事件分发分为两类进行分析：</p>
 <p>（1） ViewGroup的事件分发。</p>
 <p>（2） View的事件分发。</p>
-<h2 id="ViewGroup事件分发"><a href="#ViewGroup事件分发" class="headerlink" title="ViewGroup事件分发"></a>ViewGroup事件分发</h2><p>ViewGroup事件分发主要涉及到以下三个方法：</p>
+<h3 id="ViewGroup事件分发"><a href="#ViewGroup事件分发" class="headerlink" title="ViewGroup事件分发"></a>ViewGroup事件分发</h3><p>ViewGroup事件分发主要涉及到以下三个方法：</p>
 <p>（1）public boolean dispatchTouchEvent(MotionEvent ev)。</p>
 <p>（2）public boolean onInterceptTouchEvent(MotionEvent ev)。</p>
 <p>（3）public boolean onTouchEvent(MotionEvent ev)。</p>
@@ -163,12 +163,11 @@
 <p>调用dispatchTransformedTouchEvent()方法后，会执行里面的下面这部分代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (child == null || child.hasIdentityMatrix()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (child == null) &#123;</span><br><span class="line">        handled = super.dispatchTouchEvent(event);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        final float offsetX = mScrollX - child.mLeft;</span><br><span class="line">        final float offsetY = mScrollY - child.mTop;</span><br><span class="line">        event.offsetLocation(offsetX, offsetY);</span><br><span class="line"></span><br><span class="line">        handled = child.dispatchTouchEvent(event);</span><br><span class="line"></span><br><span class="line">        event.offsetLocation(-offsetX, -offsetY);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> handled;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其中child对象，就是我们当前处理的这个子View。人家有料，所以handled = child.dispatchTouchEvent(event)会执行，开始了它的事件分发，这里也涉及到了View的事件分发，后面再单独介绍。这个事件如果被这个子View消费了，事件传递结束，它下面的其他子View也就没什么事。因为dispatchTransformedTouchEvent()返回值为true的话，break，退出了for循环，后边的子View没有机会。如果返回值为false，那表示当前的活（事件）这个子View干不了，换下一个。如果事件点坐标位置的所有子View都不消费事件，也会执行如下代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// Dispatch to touch targets.</span><br><span class="line"><span class="keyword">if</span> (mFirstTouchTarget == null) &#123;</span><br><span class="line">    // No touch targets so treat this <span class="keyword">as</span> an ordinary view.</span><br><span class="line">    handled = dispatchTransformedTouchEvent(ev, canceled, null,</span><br><span class="line">            TouchTarget.ALL_POINTER_IDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这时候和事件发生在ViewGroup的非子View区域时一样，执行了相同的代码块，把ViewGroup当成View来进行事件分发。值得注意的是，此时，这些子View已经进行过分发事件，即它们都会调用各自的dispatchTouchEvent()方法，只是都没有消费事件。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>ViewGroup拿到事件后，先调用了自己的onInterceptTouchEvent()判断是否要进行拦截。如果拦截，则会将ViewGroup当成View进行事件分发。不拦截，则遍历其中的子View，挨个询问里面的子View有没有要消费事件的。消费，则事件传递结束，不消费，则又回到ViewGroup，再把自己当成View进行事件分发。在ViewGroup当成View进行事件分发的时候，若没有消进行消费，这次事件也就被丢弃。事件传递的整个过程看起来像是一个回路，这是一个经典的责任链式设计模式。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/31/Android_DispatchMotionEvent/" data-id="cjkb4c2r70005t0fsoa2xhqp6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/02/Android_DispatchMotionEvent/" data-id="cjkcfgxsq0005i5fsxubkxwev" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +176,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/08/01/Android_DispatchMotionEvent2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/02/Android_DispatchMotionEvent2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -251,11 +250,11 @@
       <ul>
         
           <li>
-            <a href="/2018/08/01/Android_DispatchMotionEvent2/">Android事件分发机制（二）</a>
+            <a href="/2018/08/02/Android_DispatchMotionEvent2/">Android事件分发机制（二）</a>
           </li>
         
           <li>
-            <a href="/2018/07/31/Android_DispatchMotionEvent/">Android事件分发机制（一）</a>
+            <a href="/2018/08/02/Android_DispatchMotionEvent/">Android事件分发机制（一）</a>
           </li>
         
           <li>
