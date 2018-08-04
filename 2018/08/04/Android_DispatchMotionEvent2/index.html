@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Derik的个人博客">
 <meta property="og:description" content="ViewGroup进行事件分发的过程中，多次把事件传递给了子View，开始View的事件分发。那么，View的事件分发如何进行？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-04T00:41:05.929Z">
+<meta property="og:updated_time" content="2018-08-04T00:50:26.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件分发机制（二）">
 <meta name="twitter:description" content="ViewGroup进行事件分发的过程中，多次把事件传递给了子View，开始View的事件分发。那么，View的事件分发如何进行？">
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-Android_DispatchMotionEvent2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/04/Android_DispatchMotionEvent2/" class="article-date">
-  <time datetime="2018-08-04T00:41:05.981Z" itemprop="datePublished">2018-08-04</time>
+  <time datetime="2018-08-04T00:50:26.865Z" itemprop="datePublished">2018-08-04</time>
 </a>
     
   </div>
@@ -121,12 +121,12 @@
 <p>只要View是clickable，或者悬停、长按时可显示工具提示，就会返回true，消费事件。</p>
 <p>（3）关于点击和长按事件的处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!mHasPerformedLongPress &amp;&amp; !mIgnoreNextUpEvent) &#123;</span><br><span class="line">    // This <span class="keyword">is</span> a tap, so remove the longpress check</span><br><span class="line">    removeLongPressCallback();</span><br><span class="line"></span><br><span class="line">    // Only perform take click actions <span class="keyword">if</span> we were <span class="keyword">in</span> the pressed state</span><br><span class="line">    <span class="keyword">if</span> (!focusTaken) &#123;</span><br><span class="line">        // Use a Runnable <span class="keyword">and</span> post this rather than calling</span><br><span class="line">        // performClick directly. This lets other visual state</span><br><span class="line">        // of the view update before click actions start.</span><br><span class="line">        <span class="keyword">if</span> (mPerformClick == null) &#123;</span><br><span class="line">            mPerformClick = new PerformClick();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!post(mPerformClick)) &#123;</span><br><span class="line">            performClick();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在手指抬起，View收到ACTION_UP时，先检测是否是长按。如果不是长按，则执行removeLongPressCallback()，移除长按的CheckForLongPress对象，系统不会对长按进行响应。否则，执行performClick()，开始调用点击事件监听器中的回调方法，进行事件响应。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>ViewGroup拿到事件后，先调用了自己的onInterceptTouchEvent()判断是否要进行拦截。如果拦截，则会将ViewGroup当成View进行事件分发。不拦截，则遍历其中的子View，挨个询问里面的子View有没有要消费事件的。消费，则事件传递结束，不消费，则又回到ViewGroup，再把自己当成View进行事件分发。在ViewGroup当成View进行事件分发的时候，若没有消进行消费，这次事件也就被丢弃。事件传递的整个过程看起来像是一个回路，这是一个经典的责任链式设计模式。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>ViewGroup拿到事件后，先调用了自己的onInterceptTouchEvent()判断是否要进行拦截。如果拦截，则会将ViewGroup当成View进行事件分发。不拦截，则遍历其中的子View，挨个询问里面的子View有没有要消费事件的。消费，则事件传递结束，不消费，传递给下一个View，都不消费，则又传回到ViewGroup，把自己当成View进行事件分发。在ViewGroup当成View进行事件分发的时候，若没有消进行消费，这次事件被丢弃。事件传递的整个过程看起来像一个回路，是一个经典的责任链式设计模式。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/Android_DispatchMotionEvent2/" data-id="cjkep2ibs0001yyfsehl10vse" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/04/Android_DispatchMotionEvent2/" data-id="cjkepbtpa000167fsnwmrxn80" class="article-share-link">Share</a>
       
       
     </footer>
