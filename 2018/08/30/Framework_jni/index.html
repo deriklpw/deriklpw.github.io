@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android Framework层看JNI机制（一） | Derik的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JNI（Java Native Interface）Java本地接口，从Java 1.1开始，JNI成为Java平台的一部分。最初对JNI的了解，仅仅停留在Java通过JNI，可以实现对C/C++函数的调用。比如，首先，在java中写好native方法。然后，在C或C++中文件中，定义一个对应的函数，在这个函数中，实现自己的代码或者调用其他的标准库。最后，加载一下生成的动态库，便可以开始调用这个本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Framework层看JNI机制（一）">
+<meta property="og:url" content="http://yoursite.com/2018/08/30/Framework_jni/index.html">
+<meta property="og:site_name" content="Derik的个人博客">
+<meta property="og:description" content="JNI（Java Native Interface）Java本地接口，从Java 1.1开始，JNI成为Java平台的一部分。最初对JNI的了解，仅仅停留在Java通过JNI，可以实现对C/C++函数的调用。比如，首先，在java中写好native方法。然后，在C或C++中文件中，定义一个对应的函数，在这个函数中，实现自己的代码或者调用其他的标准库。最后，加载一下生成的动态库，便可以开始调用这个本">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-30T12:59:19.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Framework层看JNI机制（一）">
+<meta name="twitter:description" content="JNI（Java Native Interface）Java本地接口，从Java 1.1开始，JNI成为Java平台的一部分。最初对JNI的了解，仅仅停留在Java通过JNI，可以实现对C/C++函数的调用。比如，首先，在java中写好native方法。然后，在C或C++中文件中，定义一个对应的函数，在这个函数中，实现自己的代码或者调用其他的标准库。最后，加载一下生成的动态库，便可以开始调用这个本">
+  
+    <link rel="alternate" href="/atom.xml" title="Derik的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Derik的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Framework_jni" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/30/Framework_jni/" class="article-date">
+  <time datetime="2018-08-30T12:59:19.600Z" itemprop="datePublished">2018-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Framework层看JNI机制（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JNI（Java Native Interface）Java本地接口，从Java 1.1开始，JNI成为Java平台的一部分。最初对JNI的了解，仅仅停留在Java通过JNI，可以实现对C/C++函数的调用。比如，首先，在java中写好native方法。然后，在C或C++中文件中，定义一个对应的函数，在这个函数中，实现自己的代码或者调用其他的标准库。最后，加载一下生成的动态库，便可以开始调用这个本地方法。像是在照葫芦画瓢，知其然，不知其所以然。最近一直在研究Framework源码，刚好看到了JNI这一块的知识，两本书加上网上大咖的神贴，综合理解，以Framework中Log，Camera为研究对象，分析JNI在其中的使用，深入理解JNI究竟是何方神圣。当然，水平有限，不足之处，还请留言指正，感谢！<br><a id="more"></a></p>
+<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><ol>
+<li>JNI机制基本要点</li>
+<li>Android中JNI的存在方式</li>
+<li>Framework层Log中JNI的使用</li>
+<li>Framework层Camera中JNI的使用</li>
+</ol>
+<h1 id="JNI机制基本点"><a href="#JNI机制基本点" class="headerlink" title="JNI机制基本点"></a>JNI机制基本点</h1><p>用过JNI的工程师，都接触过下面这些知识点。还是先从这里开始说起，便于后面对源码的理解：</p>
+<ol>
+<li>JavaVM：表示Java虚拟机。</li>
+<li>JNIEnv：表示JNI环境的上下文，例如注册、查找类、异常等。</li>
+<li>jclass：在JNI中表示的Java类。</li>
+<li>jmethodID：在JNI中表示的Java类中的方法。</li>
+<li>jfiledID：在JNI中表示IDEJava类中的属性。</li>
+<li>线程：JNI中通过AttachCurrentThread和DetachCurrentThread方法，实现和Java线程的结合。</li>
+</ol>
+<p>先需要提到一个头文件jni.h，它是JNI机制中很重要的一个头文件，源代码路径：/libnativehelper/include/nativehelper/jni.h。在libnativehelper目录下的源文件，编译后会生成一个libnativehelper.so的动态库。其实，jni.h是Android根据Java本地调用的标准写成的一个头文件，在它里面包括了基本类型（类型的映射），以及JavaVM，JNIEnv，jclass，jmethodID，jfiledID等数据结构的定义。</p>
+<p>JavaVm对应于jni.h中JNIInvokeInterface结构体，表示虚拟机。JNIEnv对应于JNINativeInterface结构体，表示JNI的环境。在JNI的使用过程中，所调用的功能大都来自JNInativeInterface结构体。例如，处理Java属性和方法的查找，Java属性的访问，Java方法的调用等功能。另外，在JNINativeInterface结构体中，涉及到的一个JNINativeMethod结构体，它表示在本地实现的一个方法，即native方法，后面讲JNI动态注册的时候会用到。</p>
+<h1 id="Android中JNI的存在方式"><a href="#Android中JNI的存在方式" class="headerlink" title="Android中JNI的存在方式"></a>Android中JNI的存在方式</h1><p>Android中JNI的存在方式主要分两种： 框架层和应用层的JNI使用。<br>在Android框架中，JNI库是一些普通的本地动态库，被放置在目标系统的/system/lib目录中。Java框架层，最主要的JNI内容，源代码路径为：frameworks/base/core/jni，这里面的代码会生成一个libandroid_runtiem.so的动态库。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/30/Framework_jni/" data-id="cjlgktsn30002h5fshrzgjwrh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/04/Android_DispatchMotionEvent2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android事件分发机制（二）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTU4Mi8xMjExOA==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/30/Framework_jni/">Android Framework层看JNI机制（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/04/Android_DispatchMotionEvent2/">Android事件分发机制（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/02/Android_DispatchMotionEvent/">Android事件分发机制（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/21/Android_7.1.2_boot_anim/">Android 7.1.2源码之修改开机动画</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/">Ubuntu 14.04 Android 7.1.2源码编译</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DerikLPW<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
