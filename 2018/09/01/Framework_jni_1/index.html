@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Derik的个人博客">
 <meta property="og:description" content="JNI（Java Native Interface）Java本地接口。最初对JNI的了解，仅仅停留在Java通过JNI可以实现对C/C++函数的调用。比如，首先在Java中写好native方法。然后在C或C++中文件中，定义一个对应的函数，在这个函数中，实现自己的代码或者调用其他的标准库。最后加载一下生成的动态库，便可以开始使用这个native方法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-01T08:44:03.677Z">
+<meta property="og:updated_time" content="2018-09-01T08:47:00.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Framework层的JNI机制（一）">
 <meta name="twitter:description" content="JNI（Java Native Interface）Java本地接口。最初对JNI的了解，仅仅停留在Java通过JNI可以实现对C/C++函数的调用。比如，首先在Java中写好native方法。然后在C或C++中文件中，定义一个对应的函数，在这个函数中，实现自己的代码或者调用其他的标准库。最后加载一下生成的动态库，便可以开始使用这个native方法。">
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-Framework_jni_1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/01/Framework_jni_1/" class="article-date">
-  <time datetime="2018-09-01T08:44:03.713Z" itemprop="datePublished">2018-09-01</time>
+  <time datetime="2018-09-01T08:47:00.033Z" itemprop="datePublished">2018-09-01</time>
 </a>
     
   </div>
@@ -105,7 +105,7 @@
 <p>在libnativehelper目录下的源文件，编译后会生成一个libnativehelper.so的动态库。其实，jni.h是Android根据Java本地调用的标准写成的一个头文件，在它里面包括了基本类型（类型的映射），以及JavaVM，JNIEnv，jclass，jmethodID，jfiledID等数据结构的定义。</p>
 <p>JavaVM对应于jni.h中JNIInvokeInterface结构体，表示虚拟机。JNIEnv对应于JNINativeInterface结构体，表示JNI的环境。在JNI的使用过程中，所调用的功能大都来自JNINativeInterface结构体。例如，处理Java属性和方法的查找，Java属性的访问，Java方法的调用等功能。另外，在JNINativeInterface结构体中，涉及到的一个JNINativeMethod结构体，它表示在本地实现的一个方法，即native方法，后面进行JNI注册的时候会用到。</p>
 <h1 id="二、Android中JNI的存在方式"><a href="#二、Android中JNI的存在方式" class="headerlink" title="二、Android中JNI的存在方式"></a>二、Android中JNI的存在方式</h1><p>Android中JNI的存在方式主要分两种： 框架层和应用层的JNI使用。不对应用层的使用情况进行介绍，主要目的还是看看框架层里面的JNI。<br>在Android框架中，JNI库是一些普通的本地动态库，被放置在目标系统的/system/lib目录中。<br>Java框架层，最主要的JNI内容源代码路径为：/frameworks/base/core/jni。<br>这里面的代码会生成一个libandroid_runtiem.so的动态库。接下来要分析的Log中JNI的使用，就在这个目录之中。</p>
-<h1 id="Framework层Log相关"><a href="#Framework层Log相关" class="headerlink" title="Framework层Log相关"></a>Framework层Log相关</h1><ol>
+<h1 id="三、Framework层Log相关"><a href="#三、Framework层Log相关" class="headerlink" title="三、Framework层Log相关"></a>三、Framework层Log相关</h1><ol>
 <li><p>Java框架层的Log<br>在编程的时候，大家都用过Log，其实这个我们经常使用的Log工具，在Java框架层最终调用的是native方法。<br>贴上源码的路径：<code>/frameworks/base/core/java/android/util/Log.java。</code><br>如果感兴趣，可以进去瞧一瞧。咱们以<code>Log.java</code>中的<code>println_native()</code>这个本地方法，进行分析。</p>
 </li>
 <li><p>Log的JNI实现<br>Log的JNI的实现是在一个叫<code>android_util_Log.cpp</code>的源文件中。<br>源码路径：<br>头文件：<code>/frameworks/base/core/jni/android_util_Log.h</code><br>源文件：<code>/frameworks/base/core/jni/android_util_Log.cpp</code></p>
@@ -167,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/01/Framework_jni_1/" data-id="cjlj6kwu80005qtfs6oni1yh1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/01/Framework_jni_1/" data-id="cjlj6op7g0005wqfs3ohoogyj" class="article-share-link">Share</a>
       
       
     </footer>
