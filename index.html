@@ -64,8 +64,8 @@
   
     <article id="post-Framework_jni_2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/09/04/Framework_jni_2/" class="article-date">
-  <time datetime="2018-09-04T12:29:46.621Z" itemprop="datePublished">2018-09-04</time>
+    <a href="/2018/09/05/Framework_jni_2/" class="article-date">
+  <time datetime="2018-09-05T09:48:49.783Z" itemprop="datePublished">2018-09-05</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/04/Framework_jni_2/">Android Framework层的JNI机制（二）</a>
+      <a class="article-title" href="/2018/09/05/Framework_jni_2/">Android Framework层的JNI机制（二）</a>
     </h1>
   
 
@@ -84,35 +84,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Java框架层中有很多地方使用JNI机制，每一个部分的框架层代码，都可能有与之对应的JNI库。先了解Java框架层的组成，继续看一下JNI在框架层中的使用，将会发现和Log中的情况稍有不同。</p>
-<h1 id="Java框架层的组成"><a href="#Java框架层的组成" class="headerlink" title="Java框架层的组成"></a>Java框架层的组成</h1><ul>
-<li>java框架库：framework.jar</li>
-<li>java服务库：services.jar</li>
-<li>资源包：framework-res.apk<br>framework.jar是系统的核心，其中定义并实现了Android中大多数的Java类，也提供作为标准接口的框架层API。<br>services.jar包含了一些复杂的服务，为框架层提供一部分功能的实现。服务库也具有Java框架层中一个主要的程序入口。进入此入口运行后，服务库将形成Java框架层的一个在后台长时间运行的程序。<br>framework-res.apk，其中没有Java代码，基本由纯资源组成的包。资源包是Java框架层唯一的包含资源和工程描述文件的包，框架层所有的资源和组件定义均包含在资源包中。<br>Java框架层的3个库之间耦合性比较强，具有相互依赖。</li>
-</ul>
-<p>主要分析framework.jar和services.jar</p>
-<ol>
-<li>framework.jar<br>框架库主要分布在frameworks/base的以下目录：</li>
-</ol>
-<ul>
-<li>core：Android核心包。</li>
-<li>graphics：图形处理包。</li>
-<li>opengl：Android OpenGL 3D实现。</li>
-<li>telephony：电话部分。</li>
-<li>media：多媒体和音频。</li>
-<li>wifi：无线局域网相关。<br>其中core是主要的目录，实现了Android系统所定义的大部分Java类。其中core目录下，jni包是同目录下java包中对应的jni实现。我们的Log相关的Java类和JNI实现，就分别在这两个包中。<br>上一篇写过<code>/frameworks/base/core/jni</code>目录下的JNI实现，会生成一个<code>libandroid_runtiem.so</code>的动态库。这个动态库在/frameworks/base/tools/preload/loadclass/LoadClass.java类中被加载。启动zygote时，AndroidRuntime的对象会将其中的jni进行注册，所以core，media（部分），opengl等相关的jni会一起在启动的时候进行注册。</li>
-</ul>
-<ol start="2">
-<li>services.jar<br>Android中Java框架层服务库部分的目录为：frameworks/base/services/java，同级目录下的Android.mk会将这个包编译，生成services.jar。<br>其中/frameworks/base/services/java/com/android/server中只包含一个入口部分的类，其他的类在<code>/frameworks/base/services/core/java/com/android/server</code>目录下。</li>
-</ol>
-<p>Java服务部分的JNI实现，在frameworks/base/service/core/jni目录下，其中的内容生成名称为<code>libandroid_servers.so</code>的动态库，为services.jar提供本地支持。这个库在frameworks/base/services/java/SystemServer.java类中被加载。</p>
-<p>另外，Android框架层还包含了其他的JNI实现库。例如多媒体另一部分的JNI实现在<code>/frameworks/base/media/jni</code>这个目录下（一部分在<code>libandroid_runtime.so</code>中），生成libmedia_jni.so，它也是为framework.jar提供部分的本地支持。这个动态库是在<code>/frameworks/base/media/java/android/media/MediaPlayer.java</code>类中加载，也就是说它是在我们程序中，使用的时候进行加载的。</p>
-<p>在<code>frameworks/base/service/core/jni</code>和<code>/frameworks/base/media/jni</code>这两个目录下，有一个onload.cpp的源文件，在其中的<code>JNI_OnLoad()</code>函数中，完成了各个JNI方法的注册，它在System.loadLibrary()方法调用后，java虚拟机加载对应的动态函数库，会执行<code>JNI_OnLoad()</code>函数。这和前面的Log相关的JNI方法注册是不一样的。</p>
-
+        <p>Java框架层中有很多地方使用JNI机制，每一个部分的框架层代码，都可能有与之对应的JNI库。先了解Java框架层的组成，继续看一下JNI在框架层中的使用。<br></p>
+        
+          <p class="article-more-link">
+            <a href="/2018/09/05/Framework_jni_2/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/04/Framework_jni_2/" data-id="cjlnp02s8000221fs1a0q4uli" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/05/Framework_jni_2/" data-id="cjloynr970002qpfsvlfwh8ik" class="article-share-link">Share</a>
       
       
     </footer>
@@ -156,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/03/Framework_jni_1/" data-id="cjlnp02sf000621fso6wveu11" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/03/Framework_jni_1/" data-id="cjloynr9e0006qpfsonpg5k63" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/Android_DispatchMotionEvent2/" data-id="cjlnp02s6000121fsrgyfw87z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/04/Android_DispatchMotionEvent2/" data-id="cjloynr950001qpfs1uuf8742" class="article-share-link">Share</a>
       
       
     </footer>
@@ -244,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/02/Android_DispatchMotionEvent/" data-id="cjlnp02se000521fst51kri8b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/02/Android_DispatchMotionEvent/" data-id="cjloynr9d0005qpfsqmojq6ht" class="article-share-link">Share</a>
       
       
     </footer>
@@ -288,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/21/Android_7.1.2_boot_anim/" data-id="cjlnp02s0000021fsrfht9v6g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/21/Android_7.1.2_boot_anim/" data-id="cjloynr900000qpfs5b8f73ff" class="article-share-link">Share</a>
       
       
     </footer>
@@ -332,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjlnp02s9000321fsqcv8pgbh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/17/Ubuntu_14.04_Android_7.1.2_env_config/" data-id="cjloynr980003qpfsmpx8jbek" class="article-share-link">Share</a>
       
       
     </footer>
@@ -376,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/12/linearLayout/" data-id="cjlnp02sa000421fsnr3ytmxh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/12/linearLayout/" data-id="cjloynr990004qpfsps5yjbpr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -426,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/12/java8/" data-id="cjlnp02sg000721fstnjc64wz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/12/java8/" data-id="cjloynr9f0007qpfsktpanft6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -469,7 +450,7 @@
       <ul>
         
           <li>
-            <a href="/2018/09/04/Framework_jni_2/">Android Framework层的JNI机制（二）</a>
+            <a href="/2018/09/05/Framework_jni_2/">Android Framework层的JNI机制（二）</a>
           </li>
         
           <li>
